@@ -96,4 +96,7 @@ function updateBoard() {
 
 function clearBoard() {
     currentBoard = new Array(9).fill(0)
+    updateBoard()
+    document.getElementById('winMessage').innerHTML = ""
+    currentPlayer = false
 }
