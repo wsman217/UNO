@@ -55,6 +55,7 @@ function buttonPressed(id) {
 
     if (checkBoard()) {
         // win case
+        document.getElementById('winMessage').innerHTML = '<h2>Player Wins!</h2>'
         console.log("won")
         return
     }
