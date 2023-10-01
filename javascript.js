@@ -77,8 +77,16 @@ function checkBoard() {
         }
     })
 
-    for (let value in winningMoves) {
-        if (winningMoves[value].toString() === playerState.toString())
+    console.log(playerState)
+    for (let winningBoard in winningMoves) {
+        let differs = false
+        winningMoves[winningBoard].forEach((value, index) => {
+            if (!value || differs)
+                return
+            differs = !(value && playerState[index])
+        })
+
+        if (!differs)
             return true
     }
 
