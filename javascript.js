@@ -48,6 +48,8 @@ function buttonPressed(id) {
     document.getElementById('playerMessage').innerHTML = "<h2>Player " + (currentPlayer ? "O" : "X") + "'s Turn</h2>"
     if (currentBoard[id] !== 0) {
         console.log("Already played implement something here lol.")
+		document.getElementById(id).classList.toggle("invalidMove")
+        setTimeout(()=> document.getElementById(id).classList.toggle("invalidMove"),500)
         return
     }
 
