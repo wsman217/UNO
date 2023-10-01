@@ -55,7 +55,7 @@ function buttonPressed(id) {
 
     if (checkBoard()) {
         // win case
-        currentPlayer ? document.getElementById('winMessage').innerHTML = '<h2>Player X Wins!</h2>' : document.getElementById('winMessage').innerHTML = '<h2>Player O Wins!</h2>'
+        document.getElementById('winMessage').innerHTML = "<h2>Player " + (currentPlayer ? "X" : "O") + " Wins!</h2>"
         console.log("won")
         return
     }
