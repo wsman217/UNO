@@ -12,6 +12,10 @@ body {
     vertical-align: middle;
 }
 
+button{
+    cursor: pointer;
+}
+
 .grid-container {
     display: inline-grid;
     grid-template-columns: auto auto auto;
