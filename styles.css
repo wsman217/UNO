@@ -13,10 +13,12 @@ body {
 }
 
 button{
+	background-color: #f5f5dc;
     cursor: pointer;
     height: 3rem;
     width: 3rem;
 	font-size:16px
+
 	
 }
 
