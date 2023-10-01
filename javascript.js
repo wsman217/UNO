@@ -96,6 +96,7 @@ function updateBoard() {
 }
 
 function clearBoard() {
+    document.getElementById('playerMessage').innerHTML = "<h2>Player " + (currentPlayer ? "X" : "O") + "'s Turn</h2>"
     currentBoard = new Array(9).fill(0)
     updateBoard()
     document.getElementById('winMessage').innerHTML = ""
