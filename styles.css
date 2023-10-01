@@ -12,11 +12,11 @@ body {
     vertical-align: middle;
 }
 
-button{
+button {
     cursor: pointer;
     height: 3rem;
     width: 3rem;
-    font-size:16px
+    font-size: 16px
 }
 
 
@@ -29,8 +29,8 @@ button{
     text-align: center;
 }
 
-.invalidMove{
-	animation: shake .5s;
+.invalidMove {
+    animation: shake .5s;
 }
 
 @keyframes shake {

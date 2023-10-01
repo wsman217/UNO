@@ -46,7 +46,6 @@ let currentPlayer = false
 
 // Function for registering button presses.
 function buttonPressed(id) {
-    document.getElementById('playerMessage').innerHTML = "<h2>Player " + (currentPlayer ? "O" : "X") + "'s Turn</h2>"
     if (currentBoard[id] !== 0) {
         console.log("Already played implement something here lol.")
 		document.getElementById(id).classList.toggle("invalidMove")
@@ -64,6 +63,7 @@ function buttonPressed(id) {
         return
     }
 
+    document.getElementById('playerMessage').innerHTML = "<h2>Player " + (currentPlayer ? "O" : "X") + "'s Turn</h2>"
     currentPlayer = !currentPlayer
 }
 
@@ -115,4 +115,5 @@ function clearBoard() {
     updateBoard()
     document.getElementById('winMessage').innerHTML = ""
     currentPlayer = false
+    document.getElementById('playerMessage').innerHTML = "<h2>Player O's Turn</h2>"
 }
