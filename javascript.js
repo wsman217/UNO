@@ -48,8 +48,8 @@ let currentPlayer = false
 function buttonPressed(id) {
     if (currentBoard[id] !== 0) {
         console.log("Already played implement something here lol.")
-		document.getElementById(id).classList.toggle("invalidMove")
-        setTimeout(()=> document.getElementById(id).classList.toggle("invalidMove"),500)
+        document.getElementById(id).classList.toggle("invalidMove")
+        setTimeout(() => document.getElementById(id).classList.toggle("invalidMove"), 500)
         return
     }
 
