@@ -40,6 +40,7 @@ const winningMoves = [
         true, false, false
     ] // Diagonal, Right to Left
 ]
+
 let currentBoard = new Array(9).fill(0)
 let currentPlayer = false
 
@@ -66,6 +67,7 @@ function buttonPressed(id) {
     currentPlayer = !currentPlayer
 }
 
+// Function to check player moves
 function checkBoard() {
     let playerState = new Array(currentBoard.length).fill(false)
 
@@ -91,6 +93,7 @@ function checkBoard() {
     return false
 }
 
+// Function to add X's and O's to board
 function updateBoard() {
     currentBoard.forEach((value, index) => {
         let currentMarker = ""
@@ -105,7 +108,9 @@ function updateBoard() {
     })
 }
 
+// Function to reset board
 function clearBoard() {
+    document.getElementById('playerMessage').innerHTML = "<h2>Player " + (currentPlayer ? "X" : "O") + "'s Turn</h2>"
     currentBoard = new Array(9).fill(0)
     updateBoard()
     document.getElementById('winMessage').innerHTML = ""
