@@ -115,5 +115,5 @@ function clearBoard() {
     updateBoard()
     document.getElementById('winMessage').innerHTML = ""
     currentPlayer = false
-    document.getElementById('playerMessage').innerHTML = "<h2>Player O's Turn</h2>"
+    document.getElementById('playerMessage').innerHTML = ""
 }

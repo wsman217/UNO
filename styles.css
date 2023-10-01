@@ -20,12 +20,7 @@ button {
     font-size: 16px;
 }
 
-header {
-    margin: auto;
-    width: fit-content;
-}
-
-.clear {
+header, .clear, #playerMessage, #winMessage {
     margin: auto;
     width: fit-content;
 }
