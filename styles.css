@@ -20,14 +20,27 @@ button {
     font-size: 16px;
 }
 
+header {
+    margin: auto;
+    width: fit-content;
+}
+
+.clear {
+    margin: auto;
+    width: fit-content;
+}
 
 .grid-container {
-    display: inline-grid;
-    grid-template-columns: auto auto auto;
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+    flex-wrap: wrap;
+    margin: auto;
+    width: 9rem;
 }
 
 .grid-items {
-    text-align: center;
+    width: 3rem;
 }
 
 .invalidMove {
