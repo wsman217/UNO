@@ -1,119 +1,89 @@
-const winningMoves = [
-    [
-        true, true, true,
-        false, false, false,
-        false, false, false
-    ], // Horizontal, Row 0
-    [
-        false, false, false,
-        true, true, true,
-        false, false, false
-    ], // Horizontal, Row 1
-    [
-        false, false, false,
-        false, false, false,
-        true, true, true
-    ], // Horizontal, Row 2
-    [
-        true, false, false,
-        true, false, false,
-        true, false, false
-    ], // Vertical, Column 0
-    [
-        false, true, false,
-        false, true, false,
-        false, true, false
-    ], // Vertical, Column 1
-    [
-        false, false, true,
-        false, false, true,
-        false, false, true
-    ], // Vertical, Column 2
-    [
-        true, false, false,
-        false, true, false,
-        false, false, true
-    ],  // Diagonal, Left to Right
-    [
-        false, false, true,
-        false, true, false,
-        true, false, false
-    ] // Diagonal, Right to Left
-]
+//https://restcountries.com/v3.1/region/europe
+//https://restcountries.com/v3.1/region/europe?fields=name
+//https://restcountries.com/v3.1/all?fields=region
+//https://restcountries.com/v3.1/name/mexico
 
-let currentBoard = new Array(9).fill(0)
-let currentPlayer = false
+// https://amiiboapi.com/api/amiibo/
+// https://amiiboapi.com/api/amiibo/?amiiboSeries=
+// https://amiiboapi.com/api/amiibo/?amiiboSeries=<value>
+// https://amiiboapi.com/api/amiibo/?amiiboSeries=
 
-// Function for registering button presses.
-function buttonPressed(id) {
-    if (currentBoard[id] !== 0) {
-        console.log("Already played implement something here lol.")
-        document.getElementById(id).classList.toggle("invalidMove")
-        setTimeout(() => document.getElementById(id).classList.toggle("invalidMove"), 500)
-        return
-    }
+const apiURL = 'https://amiiboapi.com/api/amiibo/';
+const amiiboSeries = [ "Super Smash Bros.",
+    "Super Mario Bros.",
+    "Chibi-Robo!",
+    "Yoshi's Woolly World",
+    "Splatoon",
+    "Animal Crossing",
+    "8-bit Mario",
+    "Skylanders",
+    "Legend Of Zelda",
+    "Shovel Knight",
+    "Kirby",
+    "Pokemon",
+    "Mario Sports Superstars",
+    "Monster Hunter",
+    "BoxBoy!",
+    "Pikmin",
+    "Fire Emblem",
+    "Metroid",
+    "Others",
+    "Mega Man",
+    "Diablo",
+    "Power Pros",
+    "Monster Hunter Rise",
+    "Yu-Gi-Oh!",
+    "Super Nintendo World" ];
 
-    currentBoard[id] = currentPlayer
-    updateBoard()
-
-    if (checkBoard()) {
-        // win case
-        document.getElementById('winMessage').innerHTML = "<h2>Player " + (currentPlayer ? "X" : "O") + " Wins!</h2>"
-        console.log("won")
-        return
-    }
-
-    document.getElementById('playerMessage').innerHTML = "<h2>Player " + (currentPlayer ? "O" : "X") + "'s Turn</h2>"
-    currentPlayer = !currentPlayer
+function showAll()
+{
+	text="<h3>Amiibo Series</h3>\n<table>\n<tr><th>Series</th></tr>\n";
+	Array.from(amiiboSeries).forEach( function( theSeries ){
+		let theAction = 'onclick="getAmiiboSeries( \'' + theSeries + "');\"";
+		//example: onclick="getCountries( 'Europe');"
+		console.log( theAction );
+		text+="<tr><td><a " + theAction + ">" + theSeries +"</a></td></tr>\n";
+	});
+	text += "</table>\n";
+	document.getElementById( 'theTable' ).innerHTML = text;
 }
-
-// Function to check player moves
-function checkBoard() {
-    let playerState = new Array(currentBoard.length).fill(false)
-
-    currentBoard.forEach((value, index) => {
-        if (value === currentPlayer) {
-            playerState[index] = true
-        }
-    })
-
-    console.log(playerState)
-    for (let winningBoard in winningMoves) {
-        let differs = false
-        winningMoves[winningBoard].forEach((value, index) => {
-            if (!value || differs)
-                return
-            differs = !(value && playerState[index])
-        })
-
-        if (!differs)
-            return true
-    }
-
-    return false
+function getAmiiboSeries( series )
+{
+	// theURL = apiURL + "region/" + region;
+	theURL = apiURL + "?amiiboSeries=" + series;
+	//example: https://restcountries.com/v3.1/region/Europe
+	console.log( theURL );
+	fetch( theURL ) //get the raw answer
+		.then( res => res.json() ) //get structure
+		.then( data => showAmiiboSeries( data ) ); //convert and show
 }
-
-// Function to add X's and O's to board
-function updateBoard() {
-    currentBoard.forEach((value, index) => {
-        let currentMarker = ""
-
-        if (value === true) {
-            currentMarker = "X"
-        } else if (value === false) {
-            currentMarker = "O"
-        }
-        let currentIndexButton = document.getElementById(index.toString())
-        currentIndexButton.innerText = currentMarker
-    })
+function showAmiiboSeries( theArray )
+{
+	text="<h3>Amiibo Series</h3>\n<table>\n<tr><th>Series</th><th>Character</th></tr>\n";
+	Array.from(theArray).forEach( function( theAmiibo ){
+		let theAction = 'onclick="getCharacter( \'' + theAmiibo.name.common + "');\"";
+		//example: onclick="getCountry( 'United Kingdom');"
+		console.log( theAction );
+		text+="<tr><td><a " + theAction + ">" + theAmiibo.name.common + "</a></td><td>"+ theAmiibo.subregion +"</td></tr>\n";
+	});
+	text += "</table>\n";
+	document.getElementById( 'theTable' ).innerHTML = text;
 }
-
-// Function to reset board
-function clearBoard() {
-    document.getElementById('playerMessage').innerHTML = "<h2>Player " + (currentPlayer ? "X" : "O") + "'s Turn</h2>"
-    currentBoard = new Array(9).fill(0)
-    updateBoard()
-    document.getElementById('winMessage').innerHTML = ""
-    currentPlayer = false
-    document.getElementById('playerMessage').innerHTML = ""
+function getCharacter( character )
+{
+	theURL = apiURL + "&character=" + character;
+	//example: https://restcountries.com/v3.1/name/United Kingdom
+	console.log( theURL );
+	fetch( theURL )										//get the raw answer
+		.then( res => res.json() )						//get structure
+		.then( data => showCharacter( data ) );			//convert and show
+}
+function showCharacter( theArray )
+{
+	text  = "<h3>"+ theArray[0].name.common +"</h3>\n<table>\n<tr><th>Data</th><th>Value</th></tr>\n";
+	text += "<td>Official name</td><td>" + theArray[0].name.official + "</td></tr>\n";
+	text += "<td>Capital</td><td>" + theArray[0].capital + "</td></tr>\n";
+	text += "<td>Flag</td><td>" + "<img src=\"" + theArray[0].flags.png + "\"></td></tr>\n";
+	text += "</table>\n";
+	document.getElementById( 'theTable' ).innerHTML = text;
 }
