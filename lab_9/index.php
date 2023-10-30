@@ -16,20 +16,41 @@
 </header>
 <form method="get">
     <label>
-        <input type="text" name="to_search">
+        <?php
+        $topSongs = fopen("./universal_top_spotify_songs.csv", "r");
+        foreach (explode(",", fgets($topSongs)) as $title) {
+            echo "<input type='text' placeholder='$title' name='$title'>";
+        }
+        ?>
     </label>
-    <!--input type="button" value="click"-->
-    <button type='button'>submit</button>
+    <button type='submit'>submit</button>
 </form>
 <?php
 $topSongs = fopen("./universal_top_spotify_songs.csv", "r");
-if ($topSongs && isset($_GET["to_search"])) {
+if ($topSongs && isset($_GET)) {
     echo "<table>";
     foreach (explode(",", fgets($topSongs)) as $title) {
         echo "<th>" . $title . "</th>";
     }
     while ($currentLine = fgets($topSongs)) {
-        if (str_contains(strtolower($currentLine), strtolower($_GET["to_search"]))) {
+        $containsAll = True;
+        $notEmpty = False;
+        $seperatedLine = explode(",", $currentLine);
+        $counter = 0;
+
+        foreach ($_GET as $titleName) {
+            if ($titleName !== "") {
+                $notEmpty = True;
+            }
+
+            if ($titleName !== "" && !str_contains(strtolower($seperatedLine[$counter]), strtolower($titleName))) {
+                $containsAll = False;
+            }
+
+            $counter++;
+        }
+        
+        if ($containsAll) {
             echo "<tr>";
             foreach (explode(",", $currentLine) as $element) {
                 echo "<td>" . $element . "</td>";
