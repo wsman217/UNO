@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
 <head>
     <title>COSC 4351 - Lab 9</title>
     <meta charset="utf-8">
