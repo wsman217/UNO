@@ -16,7 +16,7 @@ button {
     background-color: #f5f5dc;
     cursor: pointer;
     height: 3rem;
-    width: 3rem;
+    width: 4rem;
     font-size: 16px;
 }
 
@@ -107,6 +107,7 @@ table thead tr {
 table th,
 table td {
     padding: 12px 15px;
+    border: 1px solid black;
 }
 
 table tbody tr {
