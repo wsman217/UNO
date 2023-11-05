@@ -1,0 +1,143 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+button {
+    background-color: #f5f5dc;
+    cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    font-size: 16px;
+}
+
+link {
+    cursor: pointer;
+}
+
+header, .clear, #playerMessage, #winMessage {
+    margin: auto;
+    width: fit-content;
+}
+
+.grid-container {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+    flex-wrap: wrap;
+    margin: auto;
+    width: 9rem;
+}
+
+.grid-items {
+    width: 3rem;
+}
+
+.invalidMove {
+    animation: shake .5s;
+}
+
+#buttonClear {
+    height: 3rem;
+    width: 6rem;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+
+/*table */
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	/*width: 600px;*/
+}
+
+table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+table th,
+table td {
+    padding: 12px 15px;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+/*button*/
+.fcc-btn {
+	background-color: #199319;
+	color: white;
+	padding: 2px 25px;
+	text-decoration: none;
+}
+/*Div for the table*/
+#theTable	{
+	height: 600px;
+	overflow-y: auto;
+	/*box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);*/
+}
+.info {
+	width: 100px;
+}
