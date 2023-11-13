@@ -5,5 +5,6 @@ const io = new Server(http);
 io.on('connection', (socket) => {
     socket.on("yeet", () => {
         console.log("yeet");
+        socket.emit("yote");
     })
 })
