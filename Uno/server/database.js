@@ -56,7 +56,7 @@ app.delete("/game/:gid", (req, res) => {
 
 app.put("/game/:gid", (req, res) => {
   const gameId = req.params.gid;
-  const q = "UPDATE game SET `title`= ?, `desc`= ?, `price`= ?, `cover`= ? WHERE gid = ?";
+  const q = "UPDATE game SET `owner`= ?, `date_played`= ? WHERE gid = ?";
 
   const values = [
     req.body.title,
