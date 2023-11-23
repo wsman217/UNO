@@ -10,4 +10,9 @@ The `lab_7` directory contains data for a **WebAPI** app.
 
 The `lab_9` directory contains data for learning `PHP`
 
-THe `project` directory contains the data for our class project.
+The `project` directory contains the data for our class project.
+
+In order to start the `mysql` service on `macOS`, use the command `brew services start mysql`.
+
+Likewise, to stop the service, use the command `brew services stop mysql`.
+
