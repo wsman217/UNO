@@ -7,6 +7,11 @@ const io = new Server(http);
 const currentPlayers = [];
 const servers = new Map();
 
+let gameServer = new GameServer('test', 'test')
+gameServer.addPlayer('testPlayer', '')
+gameServer.dealToAll(7)
+gameServer.playCard('testPlayer', gameServer.hands.get('testPlayer')[0])
+
 /**
  * Response codes are loosely based on html
  Response codes:

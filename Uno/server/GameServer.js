@@ -11,7 +11,7 @@ module.exports = class GameServer {
         this.players = new Map()
         // Array of tuples
         this.moves = Array()
-        this.drawPile = Array()
+        this.discardPile = Array()
         this.hands = new Map()
         this.cards = Array()
         colors.map(color => {
@@ -45,21 +45,48 @@ module.exports = class GameServer {
         }
     }
 
-    dealToAll(cards, amount) {
+    dealToAll(amount) {
         [...Array(amount).keys()].forEach(() => {
             [...this.players.keys()].forEach(player => {
-                this.dealToOne(cards, player, 1)
+                this.drawCard(player, 1)
             })
         })
     }
 
-    dealToOne(cards, player, amount) {
+    drawCard(player, amount) {
+        if (amount >= this.cards.length) {
+            this.regainDiscardPile()
+        }
+
         let currentHand = this.hands.get(player)
-        currentHand.push(...[...Array(amount).keys()].map(() => cards.shift()))
+
+        for (let i = 0; i < amount; i++) {
+            let currentCard = this.cards.shift()
+            currentHand.push(currentCard)
+            this.moves.push([player, 'd' + currentCard])
+        }
         this.hands.set(player, currentHand)
     }
 
-    playCard(player, card) {
+    regainDiscardPile() {
+        let lastCardPlayed = this.discardPile.pop()
 
+        this.shuffleCards(this.discardPile)
+        this.cards.push(...this.discardPile)
+        this.discardPile = []
+        this.discardPile.push(lastCardPlayed)
+    }
+
+    playCard(player, card) {
+        if (!this.hands.get(player).includes(card)) {
+            return 404
+        }
+        let hand = this.hands.get(player)
+        let removed = hand.splice(hand.indexOf(card), 1)[0]
+
+        this.discardPile.push(removed)
+        this.moves.push([player, removed])
+
+        return 200
     }
 }
