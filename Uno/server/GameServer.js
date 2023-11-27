@@ -1,3 +1,5 @@
+const GameSockets = require('./GameSockets.js')
+
 const baseNumbers = [...Array(9).keys()].map(key => key + 1)
 const specials = ['S', 'R', 'D']
 const wilds = ['W', 'Z']
@@ -34,6 +36,8 @@ module.exports = class GameServer {
     addPlayer(username, socket) {
         this.players.set(username, socket)
         this.hands.set(username, Array())
+
+        new GameSockets(socket, this)
     }
 
     shuffleCards(cards) {
