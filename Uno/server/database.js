@@ -13,6 +13,11 @@ const db = mysql.createConnection({
   database: "Uno",
 });
 
+db.connect(function(err){
+  if(err) throw err;
+  console.log("Connected!)");
+});
+
 app.get("/", (req, res) => {
   res.json("hello");
 });
