@@ -1,0 +1,18 @@
+USE uno;
+ALTER TABLE moves DROP FOREIGN KEY gid;
+ALTER TABLE players DROP FOREIGN KEY gid;
+ALTER TABLE winners DROP FOREIGN KEY gid;
+
+ALTER TABLE moves ADD CONSTRAINT fk_moves_gid FOREIGN KEY (gid) REFERENCES game(gid);
+ALTER TABLE players ADD CONSTRAINT fk_players_gid FOREIGN KEY (gid) REFERENCES game(gid);
+ALTER TABLE winners ADD CONSTRAINT fk_winners_gid FOREIGN KEY (gid) REFERENCES game(gid);
+
+ALTER TABLE moves DROP FOREIGN KEY uid;
+ALTER TABLE players DROP FOREIGN KEY uid;
+ALTER TABLE game DROP FOREIGN KEY uid;
+ALTER TABLE winners DROP FOREIGN KEY uid;
+
+ALTER TABLE moves ADD CONSTRAINT fk_moves_uid FOREIGN KEY (uid) REFERENCES users(uid);
+ALTER TABLE players ADD CONSTRAINT fk_players_uid FOREIGN KEY (uid) REFERENCES users(uid);
+ALTER TABLE game ADD CONSTRAINT fk_game_uid FOREIGN KEY (owner) REFERENCES users(uid);
+ALTER TABLE winners ADD CONSTRAINT fk_winners_uid FOREIGN KEY (uid) REFERENCES users(uid);

@@ -25,8 +25,8 @@ DROP TABLE IF EXISTS `game`;
 CREATE TABLE `game` (
   `owner` varchar(32) NOT NULL,
   `date_played` varchar(16) NOT NULL,
-  `gid` int NOT NULL,
-  PRIMARY KEY (`owner`)
+  `gid` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`gid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -48,10 +48,14 @@ DROP TABLE IF EXISTS `moves`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `moves` (
   `gid` int NOT NULL,
-  `uid` int DEFAULT NULL,
-  `move` varchar(32) DEFAULT NULL,
-  `turn` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`gid`)
+  `turn` int NOT NULL,
+  `uid` int NOT NULL,
+  `move` varchar(32) NOT NULL,
+  PRIMARY KEY (`gid`,`turn`),
+  KEY `fk_moves_uid` (`uid`),
+  CONSTRAINT `fk_gid` FOREIGN KEY (`gid`) REFERENCES `game` (`gid`),
+  CONSTRAINT `fk_moves_gid` FOREIGN KEY (`gid`) REFERENCES `game` (`gid`),
+  CONSTRAINT `fk_moves_uid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -74,7 +78,10 @@ DROP TABLE IF EXISTS `players`;
 CREATE TABLE `players` (
   `uid` int NOT NULL,
   `gid` int NOT NULL,
-  PRIMARY KEY (`gid`)
+  PRIMARY KEY (`gid`,`uid`),
+  KEY `fk_players_uid` (`uid`),
+  CONSTRAINT `fk_players_gid` FOREIGN KEY (`gid`) REFERENCES `game` (`gid`),
+  CONSTRAINT `fk_players_uid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -96,8 +103,8 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `username` varchar(32) NOT NULL,
-  `uid` int NOT NULL,
-  PRIMARY KEY (`username`)
+  `uid` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -120,7 +127,10 @@ DROP TABLE IF EXISTS `winners`;
 CREATE TABLE `winners` (
   `gid` int NOT NULL,
   `uid` int NOT NULL,
-  PRIMARY KEY (`gid`)
+  PRIMARY KEY (`gid`),
+  KEY `fk_winners_uid` (`uid`),
+  CONSTRAINT `fk_winners_gid` FOREIGN KEY (`gid`) REFERENCES `game` (`gid`),
+  CONSTRAINT `fk_winners_uid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,4 +152,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-22 23:19:12
+-- Dump completed on 2023-11-27 17:12:33
