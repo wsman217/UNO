@@ -6,8 +6,16 @@ class Socket {
     }
 
     setUsername(username) {
-        this.socket.emit("setUsername", username, () => {
-            console.log("This is where we check if the username was accepted or not.")
+        return new Promise((resolve) => {
+            this.socket.emit("setUsername", username, (returnCode) => {
+                if (returnCode === 418) {
+                    resolve(false)
+                } else if (returnCode === 200) {
+                    resolve(true)
+                }
+            })
         })
     }
 }
+
+export default Socket

@@ -2,7 +2,11 @@ require('dotenv').config({path: `.env.${process.env.NODE_ENV}`})
 const http = require('http').createServer().listen(process.env.SERVER_PORT, process.env.SERVER_URL);
 const {Server} = require("socket.io");
 const GameServer = require('./GameServer.js')
-const io = new Server(http);
+const io = new Server(http, {
+    cors: {
+        origin: "http://localhost:3000"
+    }
+});
 
 const currentPlayers = [];
 const servers = new Map();
@@ -21,6 +25,7 @@ gameServer.playCard('testPlayer', gameServer.hands.get('testPlayer')[0])
  */
 
 io.on('connection', (socket) => {
+
     socket.on("setUsername", (username, ackFunction) => {
         if (currentPlayers.includes(username)) {
             ackFunction(418)
