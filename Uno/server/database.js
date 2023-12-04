@@ -42,10 +42,9 @@ app.post("/game", (req, res) => {
   const q = "INSERT INTO game(`owner`, `date_played`, `gid`) VALUES (?)";
 
   const values = [
-    req.body.title,
-    req.body.desc,
-    req.body.price,
-    req.body.cover,
+    req.body.owner,
+    req.body.game_played,
+    req.body.gid,
   ];
 
   db.query(q, [values], (err, data) => {
@@ -69,10 +68,9 @@ app.put("/game/:gid", (req, res) => {
   const q = "UPDATE game SET `owner`= ?, `date_played`= ? WHERE gid = ?";
 
   const values = [
-    req.body.title,
-    req.body.desc,
-    req.body.price,
-    req.body.cover,
+    req.body.owner,
+    req.body.game_played,
+    req.body.gid,
   ];
 
   db.query(q, [...values,gameId], (err, data) => {
