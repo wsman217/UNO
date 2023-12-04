@@ -13,6 +13,11 @@ const db = mysql.createConnection({
   database: "Uno",
 });
 
+const PORT = process.env.PORT || 3306;
+server.listen(PORT, () => {
+  console.log("Server is running on port ${PORT}");
+});
+
 db.connect(function(err){
   if(err) throw err;
   console.log("Connected!)");
@@ -74,8 +79,4 @@ app.put("/game/:gid", (req, res) => {
     if (err) return res.send(err);
     return res.json(data);
   });
-});
-
-app.listen(3306, () => {
-  console.log("Connected to backend.");
 });
