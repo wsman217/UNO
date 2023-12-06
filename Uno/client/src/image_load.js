@@ -62,3 +62,9 @@ mapCard.set('YZ', "https://raw.githubusercontent.com/sudge64/COSC-4351/main/Uno/
 mapCard.set('YR', "https://raw.githubusercontent.com/sudge64/COSC-4351/main/Uno/images/yellow/card_reverse_yellow.png");
 mapCard.set('YS', "https://raw.githubusercontent.com/sudge64/COSC-4351/main/Uno/images/yellow/card_skip_yellow.png");
 mapCard.set('YW', "https://raw.githubusercontent.com/sudge64/COSC-4351/main/Uno/images/yellow/card_wild_yellow.png");
+
+mapCard.map(v => {
+    let image = new Image()
+    image.src = v
+    return image
+})
