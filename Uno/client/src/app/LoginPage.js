@@ -6,6 +6,7 @@ let LoginPage = ({socket, setUsername}) => {
     const [userNameTaken, setUserNameTaken] = useState(false)
 
     let loginHandler = (formData) => {
+        console.log(socket)
         let name = formData.target[0].value
         formData.preventDefault()
         socket.setUsername(name).then(result => {
@@ -18,13 +19,13 @@ let LoginPage = ({socket, setUsername}) => {
     }
 
     return (
-        <div>
+        <>
             <ErrorDisplay hidden={!userNameTaken} errorMessage="This username is taken."/>
             <form onSubmit={loginHandler}>
                 <input type="text" name="username" placeholder="Username"/>
                 <button type="submit">Submit</button>
             </form>
-        </div>
+        </>
     )
 }
 

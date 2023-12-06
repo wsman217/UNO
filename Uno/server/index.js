@@ -1,20 +1,17 @@
 require('dotenv').config({path: `.env.${process.env.NODE_ENV}`})
-const http = require('http').createServer().listen(process.env.SERVER_PORT, process.env.SERVER_URL);
-const {Server} = require("socket.io");
+const http = require('http').createServer().listen(process.env.SERVER_PORT, process.env.SERVER_URL)
+const {Server} = require("socket.io")
 const GameServer = require('./GameServer.js')
 const io = new Server(http, {
     cors: {
         origin: "http://localhost:3000"
     }
-});
+})
 
-const currentPlayers = [];
-const servers = new Map();
+const currentPlayers = []
+const servers = new Map()
 
-let gameServer = new GameServer('test', 'test')
-gameServer.addPlayer('testPlayer', '')
-gameServer.dealToAll(7)
-gameServer.playCard('testPlayer', gameServer.hands.get('testPlayer')[0])
+const playerToServer = new Map()
 
 /**
  * Response codes are loosely based on html
@@ -25,7 +22,6 @@ gameServer.playCard('testPlayer', gameServer.hands.get('testPlayer')[0])
  */
 
 io.on('connection', (socket) => {
-
     socket.on("setUsername", (username, ackFunction) => {
         if (currentPlayers.includes(username)) {
             ackFunction(418)
@@ -42,6 +38,7 @@ io.on('connection', (socket) => {
 
         let gameServer = new GameServer(serverName, username)
         servers.set(serverName, gameServer)
+        playerToServer.set(username, gameServer)
         ackFunction(200)
     })
 
@@ -51,7 +48,23 @@ io.on('connection', (socket) => {
         }
 
         let gameServer = servers.get(serverName)
-        gameServer.addPlayer(username, socket);
+        gameServer.addPlayer(username, socket)
+        playerToServer.set(username, gameServer)
         ackFunction(200)
+    })
+
+    socket.on("startGame", username => {
+        let gameServer = playerToServer.get(username)
+        gameServer.startGame()
+    })
+
+    socket.on("playCard", (username, card, ackFunction) => {
+        let gameServer = playerToServer.get(username)
+        ackFunction(gameServer.playCard(username, card))
+    })
+
+    socket.on("drawCard", (username, ackFunction) => {
+        let gameServer = playerToServer.get(username)
+        ackFunction(gameServer.drawCard(username, 1))
     })
 })
