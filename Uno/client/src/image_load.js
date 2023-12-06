@@ -1,4 +1,4 @@
-const mapCard = new Map();
+export const mapCard = new Map();
 
 mapCard.set('Z', "https://raw.githubusercontent.com/sudge64/COSC-4351/main/Uno/images/black/card_plus_4_black.png");
 mapCard.set('W', "https://raw.githubusercontent.com/sudge64/COSC-4351/main/Uno/images/black/card_wild_black.png");
