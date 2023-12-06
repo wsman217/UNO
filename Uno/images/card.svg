@@ -71,7 +71,7 @@
        transform="matrix(0.65779427,0.75319765,-0.72651624,0.6871493,0,0)"
        inkscape:label="oval" />
     <path
-       style="display:none;fill:#ff4136;fill-opacity:1;stroke:none;stroke-width:14.2419"
+       style="display:inline;fill:#ff4136;fill-opacity:1;stroke:none;stroke-width:14.2419"
        id="path2-0"
        transform="matrix(0.65390468,0.75657695,-0.72778291,0.68580758,0,0)"
        inkscape:label="red"
@@ -85,7 +85,7 @@
        sodipodi:arc-type="slice"
        d="M 37.428753,7.4805808 A 22.644554,35.207176 0 0 1 60.073307,-27.726595 V 7.4805808 Z" />
     <path
-       style="display:none;fill:#0074d9;fill-opacity:1;stroke:none;stroke-width:14.2172"
+       style="display:inline;fill:#0074d9;fill-opacity:1;stroke:none;stroke-width:14.2172"
        id="path2-8"
        transform="matrix(0.65779427,0.75319765,-0.72651624,0.6871493,0,0)"
        inkscape:label="blue"
@@ -99,7 +99,7 @@
        sodipodi:arc-type="slice"
        d="M 60.080685,-27.439604 A 22.601814,35.151844 0 0 1 82.682499,7.7122402 H 60.080685 Z" />
     <path
-       style="display:none;fill:#01ff70;fill-opacity:1;stroke:none;stroke-width:14.2172"
+       style="display:inline;fill:#01ff70;fill-opacity:1;stroke:none;stroke-width:14.2172"
        id="path2-1"
        transform="matrix(0.65779427,0.75319765,-0.72651624,0.6871493,0,0)"
        inkscape:label="green"
@@ -113,7 +113,7 @@
        sodipodi:arc-type="slice"
        d="M 82.653782,7.7249503 A 22.601814,35.151844 0 0 1 60.051968,42.876794 V 7.7249503 Z" />
     <path
-       style="display:none;fill:#ffdc00;fill-opacity:1;stroke:none;stroke-width:14.2172"
+       style="display:inline;fill:#ffdc00;fill-opacity:1;stroke:none;stroke-width:14.2172"
        id="path2-14"
        transform="matrix(0.65779427,0.75319765,-0.72651624,0.6871493,0,0)"
        inkscape:label="yellow"
@@ -128,7 +128,7 @@
        d="M 60.046337,42.88298 A 22.601814,35.151844 0 0 1 44.064441,32.587243 22.601814,35.151844 0 0 1 37.444523,7.7311363 h 22.601814 z" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.403px;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS';display:inline;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.78541;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.403px;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS';display:none;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.78541;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
        x="24.862917"
        y="64.241707"
        id="text2"
@@ -140,7 +140,7 @@
          id="tspan3">1</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.8701px;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS';display:none;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.6645;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.8701px;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS';display:inline;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.6645;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
        x="13.937248"
        y="63.33144"
        id="text2-6"
@@ -149,7 +149,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.6645;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
          x="13.937248"
          y="63.33144"
-         id="tspan1">+2</tspan></text>
+         id="tspan1">+4</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:37.403px;font-family:'Comic Sans MS';-inkscape-font-specification:'Comic Sans MS';display:none;fill:#f9f9f9;fill-opacity:1;stroke:#000000;stroke-width:1.78541;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
