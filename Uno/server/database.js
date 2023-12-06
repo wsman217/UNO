@@ -46,14 +46,29 @@ const winners = new schema({
   uid: Number
 });
 
-db.query('SELECT * FROM game', (err, rows) => {
-  if(err) throw err;
-
-  console.log('Data received:');
-  console.log(rows);
+// For Users Table
+export function getUsers((err, data) => {
+  const q = "SELECT * FROM users";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return err;
+    }
+    return data;
+  });
 });
 
-export function getGame("/game", (req, res) => {
+export function insertUsers(data, (res) => {
+  const q = "INSERT INTO users(uid, username) VALUES ('uid','username')";
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    return data;
+  });
+});
+
+// For Game Table
+export function getGame((err, data) => {
   const q = "SELECT * FROM game";
   db.query(q, (err, data) => {
     if (err) {
@@ -64,33 +79,76 @@ export function getGame("/game", (req, res) => {
   });
 });
 
-export function insertGame("/game", (req, res) => {
-  const q = "INSERT INTO game(`owner`, `date_played`, `gid`) VALUES (?)";
-
-  const values = [
-    req.body.owner,
-    req.body.game_played,
-    req.body.gid,
-  ];
+export function insertGame(data, (res) => {
+  const q = "INSERT INTO game(owner, date_played, gid) VALUES ('owner','date_played','gid')";
 
   db.query(q, [values], (err, data) => {
     if (err) return res.send(err);
-    return res.json(data);
+    return data;
   });
 });
 
-app.put("/game/:gid", (req, res) => {
-  const gameId = req.params.gid;
-  const q = "UPDATE game SET `owner`= ?, `date_played`= ? WHERE gid = ?";
 
-  const values = [
-    req.body.owner,
-    req.body.game_played,
-    req.body.gid,
-  ];
+// For Players Table
+export function getPlayers((err, data) => {
+  const q = "SELECT * FROM players";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return err;
+    }
+    return data;
+  });
+});
 
-  db.query(q, [...values,gameId], (err, data) => {
+export function insertPlayers(data, (res) => {
+  const q = "INSERT INTO players(gid, uid) VALUES ('gid','uid')";
+
+  db.query(q, [values], (err, data) => {
     if (err) return res.send(err);
-    return res.json(data);
+    return data;
   });
 });
+
+// For Moves Table
+export function getMoves((err, data) => {
+  const q = "SELECT * FROM moves";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return err;
+    }
+    return data;
+  });
+});
+
+export function insertUsers(data, (res) => {
+  const q = "INSERT INTO moves(gid, move, turn, uid) VALUES ('gid', 'move', 'turn', 'uid')";
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    return data;
+  });
+});
+
+// For Winners Table
+export function getWinners((err, data) => {
+  const q = "SELECT * FROM winners";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return err;
+    }
+    return data;
+  });
+});
+
+export function insertWinners(data, (res) => {
+  const q = "INSERT INTO winners(gid, uid) VALUES ('gid','uid')";
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    return data;
+  });
+});
+
