@@ -53,10 +53,6 @@ db.query('SELECT * FROM game', (err, rows) => {
   console.log(rows);
 });
 
-export function insert(table, column){
-  const query = 'INSERT INTO ${table} VALUES ${column}';
-}
-
 app.get("/", (req, res) => {
   res.json("hello");
 });
