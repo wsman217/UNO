@@ -1,6 +1,6 @@
 # COSC-4351
 
-# Purpose
+## Purpose
 
 This repository is dedicated to the use of COSC 4351: Distributed Applications.
 
@@ -10,7 +10,7 @@ The `lab_7` directory contains data for a **WebAPI** app.
 
 The `lab_9` directory contains data for learning `PHP`
 
-The `project` directory contains the data for our class project.
+The `Uno` directory contains the data for our class project.
 
 In order to start the `mysql` service on `macOS`, use the command `brew services start mysql`.
 
