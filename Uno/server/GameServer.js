@@ -173,8 +173,7 @@ module.exports = class GameServer {
     }
 
     updateCards(player) {
-        this.players.get(player).emit("updateCards", this.hands.get(player))
-        // TODO update other players of how many cards this player has.
+        [...this.players.keys()].forEach(key => key.emit("updateCards", player, this.hands.get(player)))
     }
 
     startGame() {

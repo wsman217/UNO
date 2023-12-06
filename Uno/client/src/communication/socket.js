@@ -1,10 +1,12 @@
 const {io} = require("socket.io-client");
 
 class Socket {
-    constructor(server_url, setHasGameStarted, setPlayers) {
+    constructor(server_url, setHasGameStarted, setPlayers, setHands, getHands) {
         this.socket = io(server_url);
         this.setHasGameStarted = setHasGameStarted
         this.setPlayers = setPlayers
+        this.setHands = setHands
+        this.getHands = getHands
 
         this.setupSocketListener()
     }
@@ -42,6 +44,8 @@ class Socket {
                     resolve(false)
                 } else if (returnCode === 200) {
                     resolve(true)
+                } else if (returnCode === 403) {
+                    resolve("full")
                 }
             })
         })
@@ -59,6 +63,12 @@ class Socket {
 
         this.socket.on("setPlayers", players => {
             this.setPlayers(players)
+        })
+
+        this.socket.on("updateCards", (player, hand) => {
+            let hands = this.getHands.player = hand
+
+            this.setHands(hands)
         })
     }
 }

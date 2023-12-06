@@ -48,6 +48,10 @@ io.on('connection', (socket) => {
         }
 
         let gameServer = servers.get(serverName)
+
+        if (gameServer.players.size === 4) {
+            ackFunction(403)
+        }
         gameServer.addPlayer(username, socket)
         playerToServer.set(username, gameServer)
         ackFunction(200)
