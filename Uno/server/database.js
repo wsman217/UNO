@@ -46,6 +46,13 @@ const winners = new schema({
   uid: Number
 });
 
+db.query('SELECT * FROM game', (err, rows) => {
+  if(err) throw err;
+
+  console.log('Data received:');
+  console.log(rows);
+});
+
 export function insert(table, column){
   const query = 'INSERT INTO ${table} VALUES ${column}';
 }
@@ -54,18 +61,18 @@ app.get("/", (req, res) => {
   res.json("hello");
 });
 
-app.get("/game", (req, res) => {
+export function getGame("/game", (req, res) => {
   const q = "SELECT * FROM game";
   db.query(q, (err, data) => {
     if (err) {
       console.log(err);
-      return res.json(err);
+      return err;
     }
-    return res.json(data);
+    return data;
   });
 });
 
-app.post("/game", (req, res) => {
+export function insertGame("/game", (req, res) => {
   const q = "INSERT INTO game(`owner`, `date_played`, `gid`) VALUES (?)";
 
   const values = [
