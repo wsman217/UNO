@@ -87,16 +87,6 @@ export function insertGame("/game", (req, res) => {
   });
 });
 
-app.delete("/game/:gid", (req, res) => {
-  const gameId = req.params.gid;
-  const q = " DELETE FROM game WHERE gid = ? ";
-
-  db.query(q, [gameId], (err, data) => {
-    if (err) return res.send(err);
-    return res.json(data);
-  });
-});
-
 app.put("/game/:gid", (req, res) => {
   const gameId = req.params.gid;
   const q = "UPDATE game SET `owner`= ?, `date_played`= ? WHERE gid = ?";
