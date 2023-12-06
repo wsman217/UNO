@@ -53,10 +53,6 @@ db.query('SELECT * FROM game', (err, rows) => {
   console.log(rows);
 });
 
-app.get("/", (req, res) => {
-  res.json("hello");
-});
-
 export function getGame("/game", (req, res) => {
   const q = "SELECT * FROM game";
   db.query(q, (err, data) => {
