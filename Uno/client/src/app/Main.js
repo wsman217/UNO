@@ -13,7 +13,7 @@ let Main = () => {
     const [hasGameStarted, setHasGameStarted] = useState(false)
     const [players, setPlayers] = useState([])
     const [isOwner, setIsOwner] = useState(false)
-    const [hands, setHands] = useState({"player": ["Y3", "G2", "B1", "W"], "test": []})
+    const [hands, setHands] = useState({"player": ["Y3", "G2", "B1", "W"], "test": ["B6", "RD", "Y9"]})
 
     let updateHands = (player, hand) => {
         hands[player] = hand
