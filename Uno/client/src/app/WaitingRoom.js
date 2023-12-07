@@ -6,12 +6,10 @@ let WaitingRoom = ({username, players, isOwner, socket}) => {
         socket.startGame(username)
     }
 
-    return (
-        <>
+    return (<>
             {players}
             <Hider hidden={!isOwner} prop={<button onClick={startGame}>Start</button>}/>
-        </>
-    )
+        </>)
 };
 
 export default WaitingRoom;

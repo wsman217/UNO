@@ -8,9 +8,7 @@ let DrawPile = ({socket, player}) => {
         socket.drawCard(player)
     }
 
-    return (
-        <PlayableCard card={"BACK"} play={drawCard}/>
-    )
+    return (<PlayableCard card={"BACK"} play={drawCard}/>)
 };
 
 export default DrawPile;

@@ -25,12 +25,10 @@ let Hand = ({player, hand, location, hideCards, socket}) => {
         return cards
     }
 
-    return (
-        <div className={"hand_" + location}>
+    return (<div className={"hand_" + location}>
             {player}
             {displayCards()}
-        </div>
-    )
+        </div>)
 };
 
 export default Hand;

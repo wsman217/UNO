@@ -1,6 +1,5 @@
 let Hider = ({hidden, prop}) => {
-    if (hidden)
-        return
+    if (hidden) return
     return (prop)
 }
 

@@ -23,29 +23,26 @@ let SelectionMenu = ({socket, setIsInGame, username, setIsOwner}) => {
         setIsJoinGameHidden(false)
     }
 
-    return (
-        <>
+    return (<>
             <Hider
                 hidden={isHidden}
-                prop={
-                    <>
-                        <button onClick={unHideJoinGame}>Join Game</button>
-                        <button onClick={unHideCreateGame}>Create Game</button>
-                    </>
-                }
+                prop={<>
+                    <button onClick={unHideJoinGame}>Join Game</button>
+                    <button onClick={unHideCreateGame}>Create Game</button>
+                </>}
             />
 
             <Hider
                 hidden={isCreateGameHidden}
-                prop={<CreateGameMenu setIsInGame={setIsInGame} socket={socket} username={username} setIsOwner={setIsOwner}/>}
+                prop={<CreateGameMenu setIsInGame={setIsInGame} socket={socket} username={username}
+                                      setIsOwner={setIsOwner}/>}
             />
 
             <Hider
                 hidden={isJoinGameHidden}
                 prop={<JoinGameMenu setIsInGame={setIsInGame} socket={socket} username={username}/>}
             />
-        </>
-    )
+        </>)
 }
 
 export default SelectionMenu

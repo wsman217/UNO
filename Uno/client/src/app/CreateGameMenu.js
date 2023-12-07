@@ -20,22 +20,18 @@ const CreateGameMenu = ({socket, setIsInGame, username, setIsOwner}) => {
         })
     }
 
-    return (
-        <>
-            <Hider
-                hidden={hasJoinedGame}
-                prop={
-                    <>
-                        <ErrorDisplay hidden={!gameNameTaken} errorMessage="This game name is already taken."/>
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" name="serverID" placeholder="Game name"/>
-                            <button type="submit">Create game</button>
-                        </form>
-                    </>
-                }
-            />
-        </>
-    )
+    return (<>
+        <Hider
+            hidden={hasJoinedGame}
+            prop={<>
+                <ErrorDisplay hidden={!gameNameTaken} errorMessage="This game name is already taken."/>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" name="serverID" placeholder="Game name"/>
+                    <button type="submit">Create game</button>
+                </form>
+            </>}
+        />
+    </>)
 };
 
 export default CreateGameMenu;

@@ -22,23 +22,19 @@ let JoinGameMenu = ({socket, setIsInGame, username}) => {
         })
     }
 
-    return (
-        <>
-            <Hider
-                hidden={hasJoinedGame}
-                prop={
-                    <>
-                        <ErrorDisplay hidden={!isFull} errorMessage="This server is full."/>
-                        <ErrorDisplay hidden={!gameNameExists} errorMessage="This game name does not exist."/>
-                        <form onSubmit={handleSubmit}>
-                            <input type="text" name="serverID" placeholder="Game name"/>
-                            <button type="submit">Join Game</button>
-                        </form>
-                    </>
-                }
-            />
-        </>
-    )
+    return (<>
+        <Hider
+            hidden={hasJoinedGame}
+            prop={<>
+                <ErrorDisplay hidden={!isFull} errorMessage="This server is full."/>
+                <ErrorDisplay hidden={!gameNameExists} errorMessage="This game name does not exist."/>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" name="serverID" placeholder="Game name"/>
+                    <button type="submit">Join Game</button>
+                </form>
+            </>}
+        />
+    </>)
 };
 
 export default JoinGameMenu;

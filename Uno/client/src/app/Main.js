@@ -5,7 +5,6 @@ import Hider from "./Hider";
 import SelectionMenu from "./SelectionMenu";
 import WaitingRoom from "./WaitingRoom";
 import GameScene from "./GameScene";
-import discardPile from "./DiscardPile";
 
 let Main = () => {
     const [username, setUsername] = useState("")
@@ -33,50 +32,40 @@ let Main = () => {
 
     let socket = new Socket(process.env.REACT_APP_SERVER_URL, setHasGameStarted, setPlayers, updateHands, updateDiscard)
 
-    return (
-        <div>
-            <Hider hidden={username.length === 0}
-                   prop={
-                       <SelectionMenu
-                           setIsInGame={setIsInGame}
-                           socket={socket}
-                           username={username}
-                           setIsOwner={setIsOwner}/>
-                   }
-            />
+    return (<div>
+        <Hider hidden={username.length === 0}
+               prop={<SelectionMenu
+                   setIsInGame={setIsInGame}
+                   socket={socket}
+                   username={username}
+                   setIsOwner={setIsOwner}/>}
+        />
 
-            <Hider hidden={username.length !== 0}
-                   prop={
-                       <LoginPage
-                           socket={socket}
-                           setUsername={setUsername}
-                       />
-                   }
-            />
+        <Hider hidden={username.length !== 0}
+               prop={<LoginPage
+                   socket={socket}
+                   setUsername={setUsername}
+               />}
+        />
 
-            <Hider hidden={!isInGame || hasGameStarted}
-                   prop={
-                       <WaitingRoom
-                           username={username}
-                           players={players}
-                           isOwner={isOwner}
-                           socket={socket}
-                       />
-                   }
-            />
+        <Hider hidden={!isInGame || hasGameStarted}
+               prop={<WaitingRoom
+                   username={username}
+                   players={players}
+                   isOwner={isOwner}
+                   socket={socket}
+               />}
+        />
 
-            <Hider hidden={!hasGameStarted}
-                   prop={
-                        <GameScene
-                            username={username}
-                            socket={socket}
-                            hands={hands}
-                            discard={discard}
-                        />
-                   }
-            />
-        </div>
-    )
+        <Hider hidden={!hasGameStarted}
+               prop={<GameScene
+                   username={username}
+                   socket={socket}
+                   hands={hands}
+                   discard={discard}
+               />}
+        />
+    </div>)
 }
 
 export default Main;

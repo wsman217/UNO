@@ -17,15 +17,13 @@ let LoginPage = ({socket, setUsername}) => {
         })
     }
 
-    return (
-        <>
+    return (<>
             <ErrorDisplay hidden={!userNameTaken} errorMessage="This username is taken."/>
             <form onSubmit={loginHandler}>
                 <input type="text" name="username" placeholder="Username"/>
                 <button type="submit">Submit</button>
             </form>
-        </>
-    )
+        </>)
 }
 
 export default LoginPage
