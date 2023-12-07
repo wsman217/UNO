@@ -5,7 +5,7 @@ const colors = ['R', 'G', 'B', 'Y']
 
 module.exports = class GameServer {
 
-    constructor(serverName, host) {
+    constructor(serverName, host, hostSocket) {
         this.serverName = serverName
         this.host = host
         this.players = new Map()

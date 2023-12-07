@@ -25,7 +25,6 @@ class Socket {
 
     createServer(username, serverName) {
         console.log("create server")
-        console.log(this.socket.id)
         return new Promise((resolve) => {
             this.socket.emit("createServer", username, serverName, (returnCode) => {
                 if (returnCode === 418) {
