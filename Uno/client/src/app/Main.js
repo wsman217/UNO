@@ -55,6 +55,7 @@ let Main = () => {
             <Hider hidden={!hasGameStarted}
                    prop={
                         <GameScene
+                            username={username}
                             socket={socket}
                             hands={hands}
                         />
