@@ -188,7 +188,23 @@ tbody tr:last-of-type {
 }
 
 img{
+    padding-left: 5px;
+    padding-right: 5px;
     width: 128px;
     height: 192px;
-    box-shadow: 1px 1px 2px 2px black;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.hand_bottom{
+    position: absolute;
+    bottom: 0;
+    border: 2px red;
+    border-style: solid;
+}
+
+.hand_top{
+    position: absolute;
+    top: 0;
+    border: 2px blue;
+    border-style: dashed;
 }
