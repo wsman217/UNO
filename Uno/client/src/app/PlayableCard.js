@@ -4,7 +4,7 @@ import Card from "./Card";
 let PlayableCard = ({card, play}) => {
 
     return (
-        <button onClick={() => play(card)}>
+        <button className="PlayableCard" onClick={() => play(card)}>
             <Card card={card}/>
         </button>
     )

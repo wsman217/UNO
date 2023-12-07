@@ -13,8 +13,6 @@ input{
 }
 
 img{
-    padding-left: 5px;
-    padding-right: 5px;
     width: 128px;
     height: 192px;
     box-shadow: 1px 1px 1px 1px black;
@@ -68,4 +66,11 @@ img{
     justify-content: center;
     align-items: center;
 
+}
+
+.PlayableCard{
+    border: 2px black;
+    background: none;
+    padding-left: 70px;
+    padding-right: 70px;
 }
