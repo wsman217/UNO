@@ -6,7 +6,7 @@ let PlayableCard = ({card, play}) => {
 
     return (
         <button className="PlayableCard" onClick={() => play(card)}>
-            <Card card={card}/>
+            <Card card={mapCard.get(card)}/>
         </button>
     )
 };

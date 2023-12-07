@@ -1,6 +1,5 @@
 import React from 'react';
 import PlayableCard from "./PlayableCard";
-import {mapCard} from "../image_load";
 
 let DrawPile = ({socket, player}) => {
 
