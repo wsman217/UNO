@@ -1,11 +1,12 @@
 const {io} = require("socket.io-client");
 
 class Socket {
-    constructor(server_url, setHasGameStarted, setPlayers, setHands) {
+    constructor(server_url, setHasGameStarted, setPlayers, setHands, setDiscard) {
         this.socket = io(server_url);
         this.setHasGameStarted = setHasGameStarted
         this.setPlayers = setPlayers
         this.setHands = setHands
+        this.setDiscard = setDiscard
 
         this.setupSocketListener()
     }
@@ -48,9 +49,36 @@ class Socket {
         })
     }
 
+    playCard(username, card) {
+        return new Promise((resolve) => {
+            this.socket.emit("playCard", username, card, (returnCode) => {
+                if (returnCode === 401) {
+                    resolve("turn")
+                } else if (returnCode === 404) {
+                    resolve("card")
+                } else if (returnCode === 400) {
+                    resolve("invalid")
+                } else if (returnCode === 200) {
+                    resolve(true)
+                }
+            })
+        })
+    }
+
+    drawCard(username) {
+        return new Promise(resolve => {
+            this.socket.emit("drawCard", username, returnCode => {
+                if (returnCode === 401) {
+                    resolve(false)
+                } else if (returnCode === 200) {
+                    resolve(true)
+                }
+            })
+        })
+    }
+
     startGame(username) {
         this.socket.emit("startGame", username)
-        this.setHasGameStarted(true)
     }
 
     setupSocketListener() {
@@ -64,6 +92,10 @@ class Socket {
 
         this.socket.on("updateCards", (player, hand) => {
             this.setHands(player, hand)
+        })
+
+        this.socket.on("updateDiscard", card => {
+            this.setDiscard(card)
         })
     }
 }

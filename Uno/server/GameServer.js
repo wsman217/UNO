@@ -70,7 +70,7 @@ module.exports = class GameServer {
         for (let i = 0; i < amount; i++) {
             let currentCard = this.cards.shift()
             currentHand.push(currentCard)
-            this.moves.push([player, 'd' + currentCard])
+            this.moves.push([[player, 'd' + currentCard]])
         }
         this.hands.set(player, currentHand)
     }
@@ -133,6 +133,9 @@ module.exports = class GameServer {
             this.drawCard(this.order[0], 4)
         }
 
+        this.moves.push([[player, card]])
+        this.updateDiscard()
+
         return 200
     }
 
@@ -175,12 +178,17 @@ module.exports = class GameServer {
         [...this.players.values()].forEach(value => value.emit("updateCards", player, this.hands.get(player)))
     }
 
+    updateDiscard() {
+        [...this.players.values()].forEach(value => value.emit("updateDiscard", this.moves.at(-1)))
+    }
+
     startGame() {
         this.order = [this.host, ...[...this.players.keys()].filter(name => name !== this.host)]
 
         this.dealToAll(7)
 
-        this.updateAllCards()
+        this.updateAllCards();
+        [...this.players.values()].forEach(value => value.emit("gameStart"))
         console.log(this.serverName + " started")
     }
 

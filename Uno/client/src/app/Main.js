@@ -14,11 +14,17 @@ let Main = () => {
     const [isOwner, setIsOwner] = useState(false)
     const [, updateState] = useState({})
     const forceUpdate = useCallback(() => updateState({}), [])
-    const [hands, setHands] = useState({"player": ["Y3", "G2", "B1", "W"], "test": ["B6", "RD", "Y9"]})
+    const [hands, setHands] = useState({})
+    const [discard, setDiscard] = useState("")
 
     let updateHands = (player, hand) => {
         hands[player] = hand
         setHands(hands)
+        forceUpdate()
+    }
+
+    let updateDiscard = (card) => {
+        setDiscard(card)
         forceUpdate()
     }
 
@@ -62,6 +68,7 @@ let Main = () => {
                             username={username}
                             socket={socket}
                             hands={hands}
+                            discard={discard}
                         />
                    }
             />

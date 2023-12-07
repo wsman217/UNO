@@ -1,30 +1,32 @@
 import React from 'react';
 import {mapCard} from "../image_load";
-import Card from "./Card";
+import PlayableCard from "./PlayableCard";
 
-let Hand = ({player, hand, location, hideCards}) => {
+let Hand = ({player, hand, location, hideCards, socket}) => {
+
+    let play = (card) => {
+        // TODO error codes
+        console.log("Card played " + card)
+        socket.playCard(player, card)
+    }
 
     let displayCards = () => {
         let cards = []
 
         for (let index in hand) {
             if (hideCards) {
-                cards.push(<Card key={index} card={mapCard.get("BACK")}/>)
+                cards.push(<PlayableCard key={index} card={mapCard.get("BACK")} play={play}/>)
                 continue
             }
 
             let card = hand[index]
-            cards.push(<Card key={index} card={mapCard.get(card)}/>)
+            cards.push(<PlayableCard key={index} card={mapCard.get(card)} play={play}/>)
         }
 
         return cards
     }
 
     return (
-        // TODO base the location of this on the location property.
-        // TODO display the numbers or not based on hideCards
-        // TODO hideCards will also determine if cards are a button.
-
         <div className={"hand_" + location}>
             {player}
             {displayCards()}
