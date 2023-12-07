@@ -186,3 +186,9 @@ tbody tr:last-of-type {
 .info {
 	width: 100px;
 }
+
+img{
+    width: 128px;
+    height: 192px;
+    box-shadow: 1px 1px 2px 2px black;
+}
