@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
             ackFunction(418)
         }
 
-        let gameServer = new GameServer(serverName, username)
+        let gameServer = new GameServer(serverName, username, socket)
         servers.set(serverName, gameServer)
         playerToServer.set(username, gameServer)
         ackFunction(200)

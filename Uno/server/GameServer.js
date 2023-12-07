@@ -5,7 +5,7 @@ const colors = ['R', 'G', 'B', 'Y']
 
 module.exports = class GameServer {
 
-    constructor(serverName, host) {
+    constructor(serverName, host, hostSocket) {
         this.serverName = serverName
         this.host = host
         this.players = new Map()
@@ -173,7 +173,7 @@ module.exports = class GameServer {
     }
 
     updateCards(player) {
-        [...this.players.keys()].forEach(key => key.emit("updateCards", player, this.hands.get(player)))
+        [...this.players.values()].forEach(value => value.emit("updateCards", player, this.hands.get(player)))
     }
 
     startGame() {
