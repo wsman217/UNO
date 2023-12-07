@@ -5,6 +5,7 @@ import Hider from "./Hider";
 import SelectionMenu from "./SelectionMenu";
 import WaitingRoom from "./WaitingRoom";
 import GameScene from "./GameScene";
+import {mapCard} from '../image_load';
 
 let Main = () => {
     const [username, setUsername] = useState("")
@@ -61,6 +62,7 @@ let Main = () => {
                         />
                    }
             />
+            <img src={mapCard.get('Y4')}/>
         </div>
     )
 }
