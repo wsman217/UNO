@@ -33,11 +33,39 @@ img{
 }
 
 .hand_top{
+    width: 80%;
+    margin: auto;
     position: absolute;
     top: 0;
     border: 2px blue;
-    border-style: dashed;
+    border-style: solid;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.hand_left{
+    transform: rotate(90deg);
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border: 2px green;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hand_right{
+    transform: rotate(270deg);
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border: 2px green;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
