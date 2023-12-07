@@ -1,12 +1,11 @@
 const {io} = require("socket.io-client");
 
 class Socket {
-    constructor(server_url, setHasGameStarted, setPlayers, setHands, getHands) {
+    constructor(server_url, setHasGameStarted, setPlayers, setHands) {
         this.socket = io(server_url);
         this.setHasGameStarted = setHasGameStarted
         this.setPlayers = setPlayers
         this.setHands = setHands
-        this.getHands = getHands
 
         this.setupSocketListener()
     }
@@ -64,7 +63,7 @@ class Socket {
         })
 
         this.socket.on("updateCards", (player, hand) => {
-
+            this.setHands(player, hand)
         })
     }
 }

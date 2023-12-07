@@ -10,12 +10,15 @@ let GameScene = ({username, socket, hands}) => {
         const playerIterator = Object.keys(hands).filter(v => v !== username)
         const locationIterator = Object.keys(locations).filter(v => v !== locations.Bottom)
 
+        console.log(playerIterator)
+
         while (playerIterator.length !== 0) {
             let hand = playerIterator.shift()
-            mappedHands.push(<Hand player={hand} hand={hands[hand]} location={locationIterator.shift()} hideCards={true}/>)
+            console.log(hand)
+            mappedHands.push(<Hand key={hand} player={hand} hand={hands[hand]} location={locationIterator.shift()} hideCards={true}/>)
         }
 
-        mappedHands.push(<Hand player={username} hand={hands[username]} location={locations.Bottom} hideCards={false}/>)
+        mappedHands.push(<Hand key={username} player={username} hand={hands[username]} location={locations.Bottom} hideCards={false}/>)
 
         return mappedHands
     }

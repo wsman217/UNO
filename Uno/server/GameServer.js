@@ -22,7 +22,6 @@ module.exports = class GameServer {
 
             collect.push(...doubled)
             collect.push(...doubled)
-            collect.push(color.concat('0'))
 
             collect.push(...wilds)
             return collect

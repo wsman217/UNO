@@ -1,6 +1,24 @@
 import React from 'react';
+import {mapCard} from "../image_load";
+import Card from "./Card";
 
 let Hand = ({player, hand, location, hideCards}) => {
+
+    let displayCards = () => {
+        let cards = []
+
+        for (let index in hand) {
+            if (hideCards) {
+                cards.push(<Card key={index} card={mapCard.get("BACK")}/>)
+                continue
+            }
+
+            let card = hand[index]
+            cards.push(<Card key={index} card={mapCard.get(card)}/>)
+        }
+
+        return cards
+    }
 
     return (
         // TODO base the location of this on the location property.
@@ -9,8 +27,7 @@ let Hand = ({player, hand, location, hideCards}) => {
 
         <div className={"hand_" + location}>
             {player}
-            <br/>
-            {hand}
+            {displayCards()}
         </div>
     )
 };
