@@ -61,8 +61,10 @@ let Main = () => {
                             hands={hands}
                         />
                    }
-            />
+            >
             <img src={mapCard.get('Y4')}/>
+            </Hider>
+            <img src={mapCard.get('W')}/>
         </div>
     )
 }
