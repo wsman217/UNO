@@ -12,9 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+<<<<<<< HEAD
+=======
     "mysql": "^2.18.1",
+>>>>>>> refs/remotes/origin/main
     "socket.io": "^4.7.2"
   }
 }
