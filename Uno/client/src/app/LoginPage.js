@@ -6,7 +6,6 @@ let LoginPage = ({socket, setUsername}) => {
     const [userNameTaken, setUserNameTaken] = useState(false)
 
     let loginHandler = (formData) => {
-        console.log(socket)
         let name = formData.target[0].value
         formData.preventDefault()
         socket.setUsername(name).then(result => {

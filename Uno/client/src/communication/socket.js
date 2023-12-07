@@ -24,7 +24,6 @@ class Socket {
     }
 
     createServer(username, serverName) {
-        console.log("create server")
         return new Promise((resolve) => {
             this.socket.emit("createServer", username, serverName, (returnCode) => {
                 if (returnCode === 418) {
@@ -65,9 +64,7 @@ class Socket {
         })
 
         this.socket.on("updateCards", (player, hand) => {
-            let hands = this.getHands.player = hand
 
-            this.setHands(hands)
         })
     }
 }

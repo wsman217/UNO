@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Socket from "../communication/socket";
 import LoginPage from "./LoginPage";
 import Hider from "./Hider";
@@ -12,13 +12,14 @@ let Main = () => {
     const [hasGameStarted, setHasGameStarted] = useState(false)
     const [players, setPlayers] = useState([])
     const [isOwner, setIsOwner] = useState(false)
-    const [hands, setHands] = useState({})
+    const [hands, setHands] = useState({"player": ["Y3", "G2", "B1", "W"], "test": []})
 
-    let getHands = () => {
-        return hands
+    let updateHands = (player, hand) => {
+        hands[player] = hand
+        this.setHands(hands)
     }
 
-    let socket = new Socket(process.env.REACT_APP_SERVER_URL, setHasGameStarted, setPlayers, setHands, getHands)
+    let socket = new Socket(process.env.REACT_APP_SERVER_URL, setHasGameStarted, setPlayers, setHands, updateHands)
 
     return (
         <div>
