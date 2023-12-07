@@ -1,6 +1,6 @@
 import React from 'react';
 
-let GameScene = ({socket, hands}) => {
+let GameScene = ({username, socket, hands}) => {
 
 };
 
