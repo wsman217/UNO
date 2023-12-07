@@ -92,6 +92,7 @@ class Socket {
 
         this.socket.on("updateCards", (player, hand) => {
             this.setHands(player, hand)
+            console.log(hand)
         })
 
         this.socket.on("updateDiscard", card => {

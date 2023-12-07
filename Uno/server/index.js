@@ -64,7 +64,6 @@ io.on('connection', (socket) => {
 
     socket.on("playCard", (username, card, ackFunction) => {
         let gameServer = playerToServer.get(username)
-        console.log("Card played." + gameServer.moves)
         ackFunction(gameServer.playCard(username, card))
     })
 

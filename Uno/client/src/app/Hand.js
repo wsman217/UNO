@@ -1,12 +1,11 @@
 import React from 'react';
-import {mapCard} from "../image_load";
 import PlayableCard from "./PlayableCard";
+import Card from "./Card";
 
 let Hand = ({player, hand, location, hideCards, socket}) => {
 
     let play = (card) => {
         // TODO error codes
-        console.log("Card played " + card)
         socket.playCard(player, card)
     }
 
@@ -15,12 +14,12 @@ let Hand = ({player, hand, location, hideCards, socket}) => {
 
         for (let index in hand) {
             if (hideCards) {
-                cards.push(<PlayableCard key={index} card={mapCard.get("BACK")} play={play}/>)
+                cards.push(<Card key={index} card={"BACK"}/>)
                 continue
             }
 
             let card = hand[index]
-            cards.push(<PlayableCard key={index} card={mapCard.get(card)} play={play}/>)
+            cards.push(<PlayableCard key={index} card={card} play={() => play(card)}/>)
         }
 
         return cards

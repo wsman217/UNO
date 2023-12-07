@@ -5,6 +5,7 @@ import Hider from "./Hider";
 import SelectionMenu from "./SelectionMenu";
 import WaitingRoom from "./WaitingRoom";
 import GameScene from "./GameScene";
+import discardPile from "./DiscardPile";
 
 let Main = () => {
     const [username, setUsername] = useState("")
@@ -14,21 +15,23 @@ let Main = () => {
     const [isOwner, setIsOwner] = useState(false)
     const [, updateState] = useState({})
     const forceUpdate = useCallback(() => updateState({}), [])
+    const [discard, setDiscard] = useState({})
     const [hands, setHands] = useState({})
-    const [discard, setDiscard] = useState("")
 
     let updateHands = (player, hand) => {
         hands[player] = hand
         setHands(hands)
+        console.log("huh?", hand)
         forceUpdate()
     }
 
     let updateDiscard = (card) => {
+        discard["server"] = card
         setDiscard(card)
         forceUpdate()
     }
 
-    let socket = new Socket(process.env.REACT_APP_SERVER_URL, setHasGameStarted, setPlayers, updateHands)
+    let socket = new Socket(process.env.REACT_APP_SERVER_URL, setHasGameStarted, setPlayers, updateHands, updateDiscard)
 
     return (
         <div>

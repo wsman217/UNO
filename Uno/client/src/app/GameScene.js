@@ -14,10 +14,12 @@ let GameScene = ({username, socket, hands, discard}) => {
 
         while (playerIterator.length !== 0) {
             let hand = playerIterator.shift()
-            mappedHands.push(<Hand key={hand} player={hand} hand={hands[hand]} location={locations[locationIterator.shift()]} hideCards={true} socket={socket}/>)
+            mappedHands.push(<Hand key={hand} player={hand} hand={hands[hand]}
+                                   location={locations[locationIterator.shift()]} hideCards={true} socket={socket}/>)
         }
 
-        mappedHands.push(<Hand key={username} player={username} hand={hands[username]} location={locations.Bottom} hideCards={false} socket={socket}/>)
+        mappedHands.push(<Hand key={username} player={username} hand={hands[username]} location={locations.Bottom}
+                               hideCards={false} socket={socket}/>)
 
         return mappedHands
     }
@@ -25,7 +27,9 @@ let GameScene = ({username, socket, hands, discard}) => {
     return (
         <>
             <DrawPile socket={socket} player={username}/>
-            <DiscardPile card={discard}/>
+            <div className="discard">
+                <DiscardPile discard={discard}/>
+            </div>
             {determineHands()}
         </>
     )

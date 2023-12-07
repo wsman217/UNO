@@ -28,6 +28,13 @@ module.exports = class GameServer {
         }).forEach(color => this.cards.push(...color))
 
         this.shuffleCards(this.cards)
+        this.shuffleCards(this.cards)
+        this.shuffleCards(this.cards)
+        this.shuffleCards(this.cards)
+        this.shuffleCards(this.cards)
+        this.shuffleCards(this.cards)
+        this.shuffleCards(this.cards)
+        this.shuffleCards(this.cards)
 
         this.addPlayer(host, hostSocket)
     }
@@ -70,7 +77,7 @@ module.exports = class GameServer {
         for (let i = 0; i < amount; i++) {
             let currentCard = this.cards.shift()
             currentHand.push(currentCard)
-            this.moves.push([[player, 'd' + currentCard]])
+            this.moves.push({"player": player, "card": 'd' + currentCard})
         }
         this.hands.set(player, currentHand)
     }
@@ -90,7 +97,6 @@ module.exports = class GameServer {
 
         this.shuffleCards(this.discardPile)
         this.cards.push(...this.discardPile)
-        this.discardPile = []
         this.discardPile.push(lastCardPlayed)
     }
 
@@ -108,9 +114,10 @@ module.exports = class GameServer {
 
         let hand = this.hands.get(player)
         let removed = hand.splice(hand.indexOf(card), 1)[0]
+        this.hands.set(player, hand)
 
         this.discardPile.push(removed)
-        this.moves.push([player, removed])
+        this.moves.push({"player": player, "card": removed})
 
         this.checkIfGameOver()
         this.nextTurn()
@@ -133,9 +140,8 @@ module.exports = class GameServer {
             this.drawCard(this.order[0], 4)
         }
 
-        this.moves.push([[player, card]])
         this.updateDiscard()
-
+        this.updateAllCards()
         return 200
     }
 
@@ -143,15 +149,15 @@ module.exports = class GameServer {
         let cardColor = toPlayCard.charAt(0)
         let cardType = toPlayCard.charAt(1)
 
-        let prevCardColor = this.moves.at(-1).charAt(0)
-        let prevCardType = this.moves.at(-1).charAt(1)
-
-        let isSpecial = ['S', 'R', 'D'].includes(cardType)
-        let isWild = ['W', 'Z'].includes(cardType)
-
-        if (isSpecial) {
-            return prevCardColor === cardColor;
+        let index = -1
+        while (this.moves.at(index).card.charAt(0) === 'd') {
+            --index;
         }
+
+        let prevCardColor = this.moves.at(index).card.charAt(0)
+        let prevCardType = this.moves.at(index).card.charAt(1)
+
+        let isWild = ['W', 'Z'].includes(cardType)
 
         if (isWild) {
             return true
@@ -179,7 +185,11 @@ module.exports = class GameServer {
     }
 
     updateDiscard() {
-        [...this.players.values()].forEach(value => value.emit("updateDiscard", this.moves.at(-1)))
+        let index = -1
+        while (this.moves.at(index).card.charAt(0) === "d") {
+            --index
+        }
+        [...this.players.values()].forEach(value => value.emit("updateDiscard", this.moves.at(index).card))
     }
 
     startGame() {
@@ -189,7 +199,12 @@ module.exports = class GameServer {
 
         this.updateAllCards();
         [...this.players.values()].forEach(value => value.emit("gameStart"))
-        console.log(this.serverName + " started")
+
+        let card = this.cards.shift()
+        this.moves.push({"player": "server", card})
+        this.updateDiscard()
+
+        // TODO make sure played card is not a special card
     }
 
     checkIfGameOver() {

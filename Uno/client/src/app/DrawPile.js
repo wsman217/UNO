@@ -10,7 +10,7 @@ let DrawPile = ({socket, player}) => {
     }
 
     return (
-        <PlayableCard card={mapCard.get("BACK")} play={drawCard}/>
+        <PlayableCard card={"BACK"} play={drawCard}/>
     )
 };
 
