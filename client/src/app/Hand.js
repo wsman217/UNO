@@ -1,11 +1,19 @@
 import React from 'react';
 import PlayableCard from "./PlayableCard";
 import Card from "./Card";
+import {mapCard} from "../image_load";
 
 let Hand = ({player, hand, location, hideCards, socket}) => {
 
     let play = (card) => {
         // TODO error codes
+        console.log(card)
+        if (card === "Z" || card === "W") {
+            card = "R" + card
+
+            console.log(card)
+        }
+
         socket.playCard(player, card)
     }
 
@@ -14,7 +22,7 @@ let Hand = ({player, hand, location, hideCards, socket}) => {
 
         for (let index in hand) {
             if (hideCards) {
-                cards.push(<Card key={index} card={"BACK"}/>)
+                cards.push(<Card key={index} card={mapCard.get("BACK")}/>)
                 continue
             }
 
@@ -25,10 +33,16 @@ let Hand = ({player, hand, location, hideCards, socket}) => {
         return cards
     }
 
-    return (<div className={"hand_" + location}>
-            {player}
-            {displayCards()}
-        </div>)
+    return (
+        <div id={"holder_" + location}>
+            <div id="name_card">
+                {player}
+            </div>
+            <div id={"hand_" + location}>
+                {displayCards()}
+            </div>
+        </div>
+    )
 };
 
 export default Hand;

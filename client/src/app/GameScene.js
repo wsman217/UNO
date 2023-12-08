@@ -25,12 +25,14 @@ let GameScene = ({username, socket, hands, discard}) => {
     }
 
     return (<>
+        <div id="draw">
             <DrawPile socket={socket} player={username}/>
-            <div className="discard">
-                <DiscardPile discard={discard}/>
-            </div>
-            {determineHands()}
-        </>)
+        </div>
+        <div id="discard">
+            <DiscardPile discard={discard}/>
+        </div>
+        {determineHands()}
+    </>)
 };
 
 export default GameScene;

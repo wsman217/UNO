@@ -49,6 +49,11 @@ io.on('connection', (socket) => {
 
         let gameServer = servers.get(serverName)
 
+        if (gameServer === undefined) {
+            ackFunction(404)
+            return
+        }
+
         if (gameServer.players.size === 4) {
             ackFunction(403)
         }
@@ -64,11 +69,22 @@ io.on('connection', (socket) => {
 
     socket.on("playCard", (username, card, ackFunction) => {
         let gameServer = playerToServer.get(username)
+
+        if (gameServer === undefined) {
+            ackFunction(404)
+            return
+        }
         ackFunction(gameServer.playCard(username, card))
     })
 
     socket.on("drawCard", (username, ackFunction) => {
         let gameServer = playerToServer.get(username)
+
+        if (gameServer === undefined) {
+            ackFunction(404)
+            return
+        }
+
         ackFunction(gameServer.drawCard(username, 1))
     })
 })

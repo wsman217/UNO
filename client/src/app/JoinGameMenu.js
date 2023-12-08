@@ -30,7 +30,7 @@ let JoinGameMenu = ({socket, setIsInGame, username}) => {
                 <ErrorDisplay hidden={!gameNameExists} errorMessage="This game name does not exist."/>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="serverID" placeholder="Game name"/>
-                    <button type="submit">Join Game</button>
+                    <button className="submit_button" type="submit">Join Game</button>
                 </form>
             </>}
         />

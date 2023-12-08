@@ -105,7 +105,10 @@ module.exports = class GameServer {
             return 401
         }
 
-        if (!this.hands.get(player).includes(card)) {
+        let cardType = card.charAt(1)
+        let isWild = ['Z', 'W'].includes(cardType)
+
+        if (!(this.hands.get(player).includes(card) || (isWild && this.hands.get(player).includes(cardType)))) {
             return 404
         }
 
@@ -113,7 +116,15 @@ module.exports = class GameServer {
             return 400
 
         let hand = this.hands.get(player)
-        let removed = hand.splice(hand.indexOf(card), 1)[0]
+
+        let removed
+
+        if (isWild) {
+            hand.splice(hand.indexOf(cardType), 1)
+            removed = card
+        } else {
+            removed = hand.splice(hand.indexOf(card), 1)[0]
+        }
         this.hands.set(player, hand)
 
         this.discardPile.push(removed)
@@ -121,8 +132,6 @@ module.exports = class GameServer {
 
         this.checkIfGameOver()
         this.nextTurn()
-
-        let cardType = card.charAt(1)
 
         if (cardType === 'S')
             this.nextTurn()

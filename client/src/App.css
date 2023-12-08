@@ -1,4 +1,4 @@
-button {
+.submit_button {
     background-color: #f5f5dc;
     cursor: pointer;
     height: 3rem;
@@ -6,72 +6,131 @@ button {
     font-size: 16px;
 }
 
-input{
-  height: 3rem;
-  width: 6rem;
-  border: none;
+input {
+    height: 3rem;
+    width: 6rem;
+    border: none;
 }
 
-img{
+img {
     width: 128px;
     height: 192px;
-    box-shadow: 1px 1px 1px 1px black;
+    border: 1px solid black;
 }
 
-.hand_bottom{
-    width: 80%;
+#name_card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#hand_bottom {
+    width: 60%;
     margin: auto;
-    position: absolute;
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+#holder_bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
     bottom: 0;
-    border: 2px red;
-    border-style: solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.hand_top{
+
+
+#hand_top img {
+    transform: rotate(180deg);
+}
+
+#hand_top {
+    width: 60%;
+    margin: auto;
+    border: 2px solid blue;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+#holder_top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    position: fixed;
+    top: 0;
+}
+
+
+
+#hand_left {
     width: 80%;
     margin: auto;
-    position: absolute;
-    top: 0;
-    border: 2px blue;
-    border-style: solid;
+    border: 2px solid green;
     display: flex;
-    justify-content: center;
     align-items: center;
+    overflow-x: auto;
 }
-.hand_left{
+
+#holder_left {
+    width: 100vh;
     transform: rotate(90deg);
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    border: 2px green;
-    border-style: solid;
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    bottom: 100%;
+    transform-origin: 0 100%;
 }
 
-.hand_right{
+
+
+#hand_right {
+    width: 80%;
+    margin: auto;
+    border: 2px solid green;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+#holder_right {
+    width: 100vh;
     transform: rotate(270deg);
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    border: 2px green;
-    border-style: solid;
     display: flex;
     justify-content: center;
-    align-items: center;
-
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    left: 100%;
+    transform-origin: 0 100%;
 }
 
-.PlayableCard{
-    border: 2px black;
-    background: none;
-    padding-left: 67px;
-    padding-right: 67px;
-    padding-bottom: 192px;
+.PlayableCard {
+    background: transparent;
+    border: none !important;
+    font-size: 0;
+}
+
+#discard {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+#draw {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+}
+
+html, body, #root {
+    height: 100%;
 }

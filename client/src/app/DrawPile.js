@@ -8,7 +8,11 @@ let DrawPile = ({socket, player}) => {
         socket.drawCard(player)
     }
 
-    return (<PlayableCard card={"BACK"} play={drawCard}/>)
+    return (
+        <div className="draw_pile">
+            <PlayableCard card={"BACK"} play={drawCard}/>
+        </div>
+    )
 };
 
 export default DrawPile;
